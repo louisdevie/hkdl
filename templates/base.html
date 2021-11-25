@@ -1,0 +1,12 @@
+<!doctype html>
+<head>
+    <title>{% block title %}{% endblock %} [HKDL]</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>— HKDL —</h1>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+    <footer>Hébergé par Heroku</footer>
+</body>

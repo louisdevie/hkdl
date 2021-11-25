@@ -5,9 +5,9 @@ name = "pypi"
 
 [packages]
 gunicorn = "*"
-flask = "*"
+flask = "2.0.2"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9.0"
+python_version = "3.9.9"

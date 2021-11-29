@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 gunicorn = "*"
 flask = "2.0.2"
+kihara = "0.2.0"
 
 [dev-packages]
 

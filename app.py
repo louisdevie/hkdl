@@ -1,3 +1,5 @@
+import kihara.link
+
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -15,7 +17,10 @@ def not_found(e):
 
 @app.route('/embed/<link>')
 def downloader(link):
-    return link
+    try:
+        return kihara.link.get_url(link)
+    except ValueError:
+        return "lien invalide"
 
 if __name__ == '__main__':
     app.run()

@@ -5,8 +5,7 @@
 }
 
 body {
-	height: 100vh;
-	background: rgb(16,128,201);
+	min-height: 100vh;
 	background: linear-gradient(-20deg, rgba(16,128,201,1) 10%, rgba(83,182,246,1) 90%);
 	display: flex;
 	flex-direction: column;

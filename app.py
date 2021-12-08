@@ -1,4 +1,8 @@
 import kihara.link
+import kihara.index
+import kihara._cachedir
+
+import requests
 
 from flask import Flask, render_template
 app = Flask(__name__)
@@ -18,7 +22,10 @@ def not_found(e):
 @app.route('/dl/<link>')
 def downloader(link):
     try:
-        return kihara.link.get_url(link)
+        url = kihara.link.get_url(link)
+        index = kihara.index.load_remote_index(url, link)
+        index = kihara.index.parse_index(index)
+        return repr(index)
     except ValueError:
         return render_template('invalid_link.html', test="test")
 

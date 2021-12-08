@@ -15,12 +15,12 @@ def not_found(e):
 def not_found(e):
     return render_template('500.html'), 500
 
-@app.route('/embed/<link>')
+@app.route('/dl/<link>')
 def downloader(link):
     try:
         return kihara.link.get_url(link)
     except ValueError:
-        return "lien invalide"
+        return render_template('invalid_link.html', test="test")
 
 if __name__ == '__main__':
     app.run()

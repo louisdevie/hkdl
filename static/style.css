@@ -49,3 +49,8 @@ a {
 a:hover {
 	text-decoration: underline;
 }
+
+em {
+	font-style: italic;
+	background-color: #0003;
+}

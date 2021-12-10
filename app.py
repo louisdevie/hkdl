@@ -23,11 +23,16 @@ def not_found(e):
 def downloader(link):
     try:
         url = kihara.link.get_url(link)
-        index = kihara.index.load_remote_index(url, link)
-        index = kihara.index.parse_index(index)
-        return repr(index)
     except ValueError:
-        return render_template('invalid_link.html', test="test")
+        return render_template('invalid_link.html')
+
+    try:
+        index = kihara.index.load_remote_index(url, link)
+    except requests.HTTPError:
+        print(url)
+        return render_template('invalid_url.html', URL=url)
+    index = kihara.index.parse_index(index)
+    return repr(index)
 
 if __name__ == '__main__':
     app.run()

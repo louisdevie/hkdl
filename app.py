@@ -2,7 +2,7 @@ import kihara.link
 import kihara.index
 import kihara._cachedir
 
-import requests
+import requests, json
 
 from flask import Flask, render_template
 app = Flask(__name__)
@@ -29,10 +29,11 @@ def downloader(link):
     try:
         index = kihara.index.load_remote_index(url, link)
     except requests.HTTPError:
-        print(url)
         return render_template('invalid_url.html', URL=url)
+
     index = kihara.index.parse_index(index)
-    return repr(index)
+    print(json.dumps(index, indent=4))
+    return render_template('download_page.html', data=index['resource'][0], humanize=kihara.index.humanize_file_size)
 
 if __name__ == '__main__':
     app.run()

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Télécharger {{ data['name'][0] if data['name'] else 'Sans nom' }}{% endblock %}
+{% block content %}
+<h1>{{ data['name'][0] if data['name'] else 'Resource sans nom' }}</h1>
+<div>
+	<h2>Description :</h2>
+	<p class="indent keep-line-breaks">{{ data['description'][0] if data['description'] else 'Aucune description' }}</p>
+	<h2>Indexé par :</h2>
+	<p class="indent">{{ ', '.join(data['provider']) if data['provider'] else 'Inconnu' }}</p>
+	<h2>Version :</h2>
+	<p class="indent">
+		<select onchange="switchVersion(event)">
+			{% for ver in data['version'] %}
+				<option value="{{ loop.index0 }}">{{ ver['name'][0] }}</option>
+			{% endfor %}
+		</select>
+		<span class="indent">{{ str(data['version']|length)+' disponibles' if (data['version']|length)>1 else 'Aucune autre disponible' }}</span>
+	</p>
+	<h2>Détails sur la version :</h2>
+	<p id="version-description" class="indent keep-line-breaks">{{ data['version'][0]['description'][0] if data['version'][0]['description'] else 'Aucune description' }}</p>
+	<h2>Fourni par :</h2>
+	<p id="version-provider" class="indent">{{ data['version'][0]['provider'][0] if data['version'][0]['provider'] else 'Anonyme' }}</p>
+	<h2>Taille du fichier :</h2>
+	<p id="version-provider" class="indent">{{ humanize(data['version'][0]['size'][0]) if data['version'][0]['size'] else 'Non indiquée' }}</p>
+	<button onclick="startDownload" class="full-width">Télécharger</button>
+</div>
+{% endblock %}
+{% block script %}
+	const versions = {{ data['version'] | safe }};
+
+	function switchVersion(e) {
+		console.log(e.target.value);
+	}
+{% endblock %}

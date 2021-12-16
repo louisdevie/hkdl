@@ -1,23 +1,24 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <title>{% block title %}{% endblock %} [HKDL]</title>
+    <title>{% block title %}{% endblock %} ~ HK</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <svg height="100" width="270" id="logo">
+    <svg height="100" width="137" id="logo">
         <g style="fill:none;stroke:#024;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter">
             <path d="M 10,0 v 100 -50 h 50 v -50 100"/>
             <path d="M 130,7 l -43,43 43,43"/>
-            <path d="M 150,10 a 40,40 0 0 1 0,80"/>
-            <path d="M 220,0 v 90 h 50"/>
         </g>
     </svg>
     <div>
         {% block content %}{% endblock %}
     </div>
-    <footer>Hébergé par <a href="https://heroku.com/home">Heroku</a></footer>
+    <footer>Hébergé par <a href="https://heroku.com/home" target="_blank">Heroku</a></footer>
+    <script>
+        {% block script %}{% endblock %}
+    </script>
 </body>
 </html>
